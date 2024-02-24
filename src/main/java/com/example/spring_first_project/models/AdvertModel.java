@@ -20,4 +20,6 @@ public class AdvertModel {
     String weight;
     @Column(name="disk")
     String disk;
+    @Column(name="size")
+    String size;
 }

@@ -38,17 +38,26 @@
 <main role="main">
 
     <div class="album py-5 bg-light">
-        <div th:each="el:${allAdverts}" class="alert alert-info mt-2">
+
+        <div th:each="el:${advert}" class="alert alert-info mt-2">
             <h3 th:text="${el.getName()}"></h3>
             <p th:text="${el.getPrice()}"></p>
             <p th:text="${el.getWeight()}"></p>
             <p th:text="${el.getDisk()}"></p>
             <p th:text="${el.getSize()}"></p>
-            <a th:href="'/advert/' + ${el.id}" class="btn btn-warning">Подробнее</a>
+        </div>
+        <div class="alert alert-info mt-2">
+            <h3>Оставить заявку на приобретение</h3>
+            <div>
+                <form action="/advert" method="post">
+                    <input type="text" name="name" placeholder="Как к вам можно обращаться?"><br>
+                    <input type="text" name="type" placeholder="Какой тип связи предпочитаете?"><br>
+                    <input type="text" name="contact" placeholder="Ваши контакты"><br>
+                    <button type="submit" class="btn btn-success">Оставить заявку</button>
+                </form>
+            </div>
         </div>
     </div>
-
-
 </main>
 
 <footer class="text-muted">

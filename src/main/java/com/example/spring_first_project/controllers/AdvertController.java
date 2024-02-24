@@ -6,27 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
-@RequestMapping("/allAdvert")
-public class AllAdvertsController {
-    final
+@RequestMapping("/advert" )
+public class AdvertController {
+    @Autowired
     AdvertRepository advertRepository;
-
-    public AllAdvertsController(AdvertRepository advertRepository) {
-        this.advertRepository = advertRepository;
-    }
-
-
-    @GetMapping
-    public String getAdverts(Model model){
-        List<AdvertModel> list = new ArrayList<>();
-        list = (List<AdvertModel>) advertRepository.findAll();
-        model.addAttribute("allAdverts", list);
-        return "allAdverts";
+    @GetMapping("{id}")
+    public String getAdvert(@PathVariable("id") long id, Model model){
+        AdvertModel advert = new AdvertModel();
+        advert = advertRepository.findById(id).get();
+        model.addAttribute("advert", advert);
+        return "advert";
     }
 }
